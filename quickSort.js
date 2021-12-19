@@ -1,4 +1,4 @@
-1. quick sort algorithem in JavaScript
+//1. quick sort algorithem in JavaScript
 
 
 
