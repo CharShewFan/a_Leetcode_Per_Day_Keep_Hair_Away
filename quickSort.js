@@ -1,57 +1,48 @@
-//1. quick sort algorithem in JavaScript
-
-
-
-// main function to sort a random list and printout every element of the list
 function quickSort(arr){
-    let left = 0;
-    let right = arr.length - 1;
-    qs(arr,left,right)
+    let l = 0;
+    let r = arr.length - 1;
+    qs(arr,l,r)
 
-    for(let k = 0; k < arr.length; k++){
-        console.log(k)
+    console.log("===============")
+    for(let item of arr){
+        console.log(item)
     }
 }
 
-
-//quicksort method
 function qs(arr,l,r){
-    if(l >= r){
-        return
-    }
+    if(l >= r) return;
+    let pIndex = partition(arr,l,r)
 
-    // return a pivot for seperate two group
-    let p = partition(arr,l,r)
-
-    // recursive calling qs method
-    qs(arr,l,p-1)
-    qs(arr,p+1,r)
+    // qs call qs, not include the pre-pivot
+    qs(arr,l,pIndex-1);
+    qs(arr,pIndex+1,r);
 }
 
-
-//patition function to seperate a group of numbers samller than pivot
-//and a group of number larger than pivot
-function partition(arr2, left,right){
-    let pivot = arr2[right]
-    let i = left - 1;
+function partition(arr,l,r){
+    let p = arr[r];
+    console.log("p is " + p)
+    let i = l - 1;
     
 
-    //loop j from left upto r - 1;
-    // compare arr2[j] with pivot, if arr2[j] < pivot, swap arr2[i] with arr2[j]
-   for(let j = 0; j < right; j++){
-       if(arr2[j] < pivot){
-           i++;
-           let temp = arr2[i]
-           arr2[i] = arr2[j]
-           arr2[j] = temp
-       }
-   }
-   // move pivot to index i+1 ,  the middle of smaller group and larger group
-   let temp = arr2[i+1]
-   arr2[i+1] = pivot
-   pivot = temp
-   return i+1
+  for(let j = l; j<r; j++){
+        if(arr[j]<p){
+            i = i+1;
+            let temp2 = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp2;
+        }
+    }
+
+    //swop pivot and arr[i+1]
+    let temp = arr[i+1];
+    arr[i+1] = p;
+    arr[r] = temp;
+    return i+1;
 }
 
-var arrList = [5,6,3,4,1,9,3,5,6,2,3,9,23,65,34,87,19,76];
-quickSort(arrList);
+
+let a1 = [5,6,4,1,9,3,2,23,65,34,87,19,20];
+let a4 = [3, 1, -1, 0, 2, 5]
+let a5 = [0, 0, 1, 1, 2, 2, 2, 2, 2, 4, 4]
+let a7 = [3, -2, -1, 0, 2, 4, 1]
+quickSort(a1)
